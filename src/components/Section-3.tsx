@@ -1,43 +1,76 @@
-function Section3() {
-    return (
-        <div>
-            <div className="md:flex flex-col border-1">
-                <div className="py-12 px-5">
-                    <div className="flex flex-col md:flex-row justify-center gap-3 items-center lg:text-2xl font-medium h-10 w-full">
-                        <div className="flex justify-center items-center">
-                            <h1 className="">Scale your</h1>
-                            <a href="/" className="py-3 px-5 ml-3 text-xs lg:text-sm font-medium border-1 bg-white/5 hover:bg-white/15 rounded-3xl transition-all delay-75 duration-100 ease-in-out select-none">Enterprise</a>
-                        </div>
-                        <div className="flex justify-center items-center">
-                            <h1 className="">without compromising</h1>
-                            <a href="/" className="py-3 px-5 ml-3 text-xs lg:text-sm font-medium border-1 bg-white/5 hover:bg-white/15 rounded-3xl transition-all delay-75 duration-100 ease-in-out select-none">Security</a>
-                        </div>
-                    </div>
+import { motion } from "framer-motion"
+import type { Variants } from "framer-motion"
 
+function Section3() {
+    const fadeUp: Variants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+        }
+    }
+
+    return (
+        <section className="space-y-8">
+            <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={fadeUp}
+                className="glass rounded-3xl p-8 md:p-16 text-center space-y-8 relative overflow-hidden"
+            >
+                {/* Background Glow */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-blue-500/10 blur-[120px] -z-1" />
+                
+                <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight max-w-4xl mx-auto leading-tight">
+                    Scale your <span className="text-white">Enterprise</span> without compromising <span className="text-blue-500">Security</span>.
+                </h2>
+                
+                <div className="flex flex-wrap justify-center gap-4 pt-8">
+                    <button className="h-12 px-8 rounded-full bg-white text-black font-semibold hover:bg-white/90 transition-all hover:scale-105 active:scale-95 glow">
+                        Start Building
+                    </button>
+                    <button className="h-12 px-8 rounded-full bg-black border border-white/20 text-white font-semibold hover:bg-white/5 transition-all hover:scale-105 active:scale-95">
+                        Talk to an Expert
+                    </button>
                 </div>
-                <hr className='mb-5'></hr>
-                <div className="relatuve flex flex-col md:flex-row border-1">
-                    <div className="md:absolute w-fit md:max-w-3/5 p-8">
-                        <div className="md:text-xl text-center md:text-start font-semibold text-white/50 mb-5 lg:mb-10" >
-                            <h2><b className="text-white">Ready to deploy?</b> Start building with a free account. Speak to an expert for your <b className='text-blue-500'>Pro</b> or <strong className="text-purple-500">Enterprise</strong>  needs.</h2>
-                        </div >
-                        <div className="flex justify-center md:justify-start gap-5">
-                            <a href="/" className="p-3 md:px-5 text-xs lg:text-sm font-medium border-1 bg-white text-black hover:bg-white/80 rounded-3xl transition-all delay-75 duration-100 ease-in-out select-none">Start Deploying</a>
-                            <a href="/" className="px-2 py-3 text-xs lg:text-sm font-medium border-1 hover:bg-white/15 rounded-3xl transition-all delay-75 duration-100 ease-in-out select-none">Talk to an Expert</a>
-                        </div>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <motion.div 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className="flex flex-col gap-6 p-8 glass rounded-3xl border-dashed"
+                >
+                    <h3 className="text-2xl font-bold">Ready to deploy?</h3>
+                    <p className="text-white/60">Start building with a free account. Speak to an expert for your Pro or Enterprise needs.</p>
+                    <div className="pt-4">
+                        <a href="/" className="text-blue-400 font-medium hover:underline flex items-center gap-2">
+                            Explore Enterprise <span className="text-xl">→</span>
+                        </a>
                     </div>
-                    <div className="hidden md:flex p-5 md:p-8 lg:p-15 w-full md:w-1/3 md:h-60">
+                </motion.div>
+
+                <motion.div 
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    variants={fadeUp}
+                    className="flex flex-col gap-6 p-8 glass rounded-3xl border-dashed"
+                >
+                    <h3 className="text-2xl font-bold">Try the product tour</h3>
+                    <p className="text-white/60">Explore Vercel Enterprise with an interactive product tour, trial, or a personalized demo.</p>
+                    <div className="pt-4">
+                        <button className="h-10 px-6 rounded-full border border-white/20 text-sm font-medium hover:bg-white/5 transition-colors">
+                            Take the Tour
+                        </button>
                     </div>
-                    <div className="hidden md:flex md:py-15 border-x-1 md:border-white/20 border-dashed md:w-1/3 h-45 md:h-60"></div>
-                    <div className="grid justify-items-center border-t-1 border-dashed p-8 lg:p-15 w-full md:w-1/3 md:h-60">
-                        <p className="h-fit text-center">Explore Vercel Enterprise <span className="text-white/50">with an interactive product tour, trial, or a personalized demo</span></p>
-                        <div className="mt-5">
-                            <a href="/" className="py-3 px-5 text-xs lg:text-sm font-medium border-1 hover:bg-white/15 rounded-3xl transition-all delay-75 duration-100 ease-in-out select-none">Explore Enterprise</a>
-                        </div>
-                    </div>
-                </div>
+                </motion.div>
             </div>
-        </div>
+        </section>
     )
 }
 

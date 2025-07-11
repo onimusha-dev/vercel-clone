@@ -1,76 +1,64 @@
 
-
 function Footer() {
-
-    const li = function (text: string, link: string = '/') {
-        return (
-            <li className="text-sm py-2 opacity-75 hover:opacity-100 transition-all delay-100 duration-100 ease-in-out">
-                <a href={`${link}`}>{text}</a>
-            </li>
-        )
-    }
+    const li = (text: string, link: string = '/') => (
+        <li key={text} className="text-sm">
+            <a href={link} className="text-white/50 hover:text-white transition-colors duration-200">
+                {text}
+            </a>
+        </li>
+    )
 
     return (
-        <footer className='mt-15 md:mt-25 px-10 pb-28'>
-            <div className="flex flex-col max-w-fit mx-auto">
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-x-20 gap-y-10 mx-auto">
-                    <ul>
-                        <li className="font-semibold mb-2">Products</li>
-                        {li('AI')}
-                        {li('Enterprise')}
-                        {li('Fluid Compute')}
-                        {li('Next.js')}
-                        {li('Observability')}
-                        {li('Previews')}
-                        {li('Rendering')}
-                        {li('Security')}
-                        {li('Turbo')}
-                        {li('V0')}
-                    </ul>
-                    <ul>
-                        <li className="font-semibold mb-2">Recources</li>
-                        {li('Community')}
-                        {li('Docs')}
-                        {li('Guides')}
-                        {li('Help')}
-                        {li('Integrations')}
-                        {li('Pricing')}
-                        {li('Resources')}
-                        {li('Solution Partners')}
-                        {li('StartUps')}
-                        {li('Tamplets')}
-
-                    </ul>
-
-                    <ul>
-                        <li className="font-semibold mb-2">Company</li>
-                        {li('About')}
-                        {li('Blog')}
-                        {li('Careers')}
-                        {li('Changelog')}
-                        {li('Events')}
-                        {li('Contact Us')}
-                        {li('Customers')}
-                        {li('Partners')}
-                        {li('Privacy Policy')}
-                        {li('Legal')}
-                    </ul>
-                    <ul>
-                        <li className="font-semibold mb-2">Socials</li>
-                        {li('Github')}
-                        {li('LinkedIn')}
-                        {li('Twitter')}
-                        {li('YouTube')}
-                    </ul>
-                </div>
-                <div className="flex items-center justify-between mt-10">
-                    <div>
-                        <a href="/" className="text-sm text-blue-600 p-2 rounded-md hover:bg-white/10 transition-all delay-100 duration-100 ease-in-out">All systems normal</a>
+        <footer className='mt-32 pb-16 px-6 md:px-12'>
+            <div className="max-w-7xl mx-auto">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12">
+                    <div className="col-span-2 lg:col-span-1">
+                        <div className="w-8 h-8 bg-white" style={{ clipPath: 'polygon(50% 0, 0 100%, 100% 100%)' }} />
                     </div>
-                    <div className="flex border-1 rounded-xl">
-                        <div className="flex items-center justify-center rounded-full opacity-50 hover:opacity-100 hover:border-2 w-7 h-7">x</div>
-                        <div className="flex items-center justify-center rounded-full opacity-50 hover:opacity-100 hover:border-2 w-7 h-7">y</div>
-                        <div className="flex items-center justify-center rounded-full opacity-50 hover:opacity-100 hover:border-2 w-7 h-7">z</div>
+                    
+                    <div className="space-y-6">
+                        <h4 className="text-sm font-semibold">Products</h4>
+                        <ul className="space-y-4">
+                            {['AI', 'Enterprise', 'Fluid Compute', 'Next.js', 'Observability', 'Previews', 'Security', 'Turbo', 'v0'].map(item => li(item))}
+                        </ul>
+                    </div>
+
+                    <div className="space-y-6">
+                        <h4 className="text-sm font-semibold">Resources</h4>
+                        <ul className="space-y-4">
+                            {['Community', 'Docs', 'Guides', 'Help', 'Integrations', 'Pricing', 'Templates'].map(item => li(item))}
+                        </ul>
+                    </div>
+
+                    <div className="space-y-6">
+                        <h4 className="text-sm font-semibold">Company</h4>
+                        <ul className="space-y-4">
+                            {['About', 'Blog', 'Careers', 'Changelog', 'Contact Us', 'Customers', 'Partners', 'Privacy Policy', 'Legal'].map(item => li(item))}
+                        </ul>
+                    </div>
+
+                    <div className="space-y-6">
+                        <h4 className="text-sm font-semibold">Social</h4>
+                        <ul className="space-y-4">
+                            {['GitHub', 'LinkedIn', 'Twitter', 'YouTube'].map(item => li(item))}
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex items-center gap-4">
+                        <span className="flex items-center gap-2 text-xs text-blue-400">
+                            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                            All systems normal
+                        </span>
+                    </div>
+                    
+                    <div className="flex items-center gap-6">
+                        <p className="text-xs text-white/30">© 2024 Vercel Inc.</p>
+                        <div className="flex items-center gap-4 grayscale opacity-50">
+                            <div className="w-5 h-5 bg-white rounded-full" />
+                            <div className="w-5 h-5 bg-white rounded-full" />
+                        </div>
                     </div>
                 </div>
             </div>

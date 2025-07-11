@@ -1,76 +1,107 @@
+import { motion } from "framer-motion"
+import type { Variants } from "framer-motion"
+
 function Section1() {
+    const fadeUp: Variants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } 
+        }
+    }
+
     return (
-        <div>
-            <div className="md:flex">
-                <div className="flex flex-col md:w-1/2 gap-5 md:gap-12 p-5 lg:p-12 border-1">
-                    <div>
-                        <h2 className="text-sm text-white/50">Git-connected Deploys</h2>
-                        <p className="lg:text-2xl font-semibold mt-3 md:mt-5">From localhost to https, in seconds. Deploy from Git or your CLI.</p>
-                    </div>
-                    <div>
-                        <div className="md:w-80 rounded-md border-2 mr-5 md:mr-auto select-none">
-                            <div className="flex gap-1 p-2">
-                                <div className="rounded-full bg-white/15 p-1"></div>
-                                <div className="rounded-full bg-white/15 p-1"></div>
-                                <div className="rounded-full bg-white/15 p-1"></div>
-                            </div>
-                            <div className="flex font-mono flex-col gap-1 text-xs text-nowrap px-3 pb-3 bg-gradient-to-r from-white/75 via-white/50 to-white/5 bg-clip-text text-transparent">
-                                <p>1 &nbsp; console.log("Hello Susie...");</p>
-                                <p>{`2 \u00A0 if(true){`}</p>
-                                <p>3 &nbsp; console.log("Happy Birth Day!!!");</p>
-                                <p>{`4 \u00A0 };`}</p>
-                                <p>5 &nbsp; Redirect to Rickroll</p>
-                                <p>6 &nbsp; window.location.href = "https://www.youtube.com/watch?v=dQ</p>
-                                <p className="bg-gradient-to-r from-white/10 via-white/5 to-transparent">{`7 \u00A0 })();|`}</p>
-                            </div>
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeUp}
+                className="group relative flex flex-col gap-8 p-8 md:p-12 glass rounded-3xl overflow-hidden hover:border-white/20 transition-colors"
+            >
+                <div>
+                    <h2 className="text-sm font-medium text-blue-400 mb-4 uppercase tracking-wider">Git-connected Deploys</h2>
+                    <p className="text-2xl md:text-3xl font-bold leading-tight">From localhost to https, in seconds. Deploy from Git or your CLI.</p>
+                </div>
+
+                <div className="relative mt-8">
+                    {/* Code Editor Mockup */}
+                    <div className="rounded-xl border border-white/10 bg-black/50 overflow-hidden glow">
+                        <div className="flex gap-1.5 p-3 border-b border-white/5">
+                            <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
+                            <div className="w-2.5 h-2.5 rounded-full bg-white/10" />
                         </div>
-                        <div className="relative -top-6 left-5 lg:left-24 md:w-80 h-45 max-w-65 md:max-w-none rounded-md border-2 backdrop-brightness-0 overflow-y-hidden">
-                            <div className="relative flex justify-center items-center p-1 select-none">
-                                <div className="absolute left-2 flex gap-1">
-                                    <div className="rounded-full bg-red-500 p-1"></div>
-                                    <div className="rounded-full bg-blue-500 p-1"></div>
-                                    <div className="rounded-full bg-green-500 p-1"></div>
+                        <div className="p-4 font-mono text-sm space-y-2 opacity-70">
+                            <div className="flex gap-4"><span className="text-white/20">1</span><span className="text-blue-300">console</span>.<span className="text-yellow-200">log</span>(<span className="text-green-300">"Hello Vercel..."</span>);</div>
+                            <div className="flex gap-4"><span className="text-white/20">2</span><span className="text-purple-300">if</span>(<span className="text-white">true</span>) {'{'}</div>
+                            <div className="flex gap-4"><span className="text-white/20">3</span>  <span className="text-blue-300">console</span>.<span className="text-yellow-200">log</span>(<span className="text-green-300">"Deploying now!"</span>);</div>
+                            <div className="flex gap-4"><span className="text-white/20">4</span> {'}'};</div>
+                        </div>
+                    </div>
+                    
+                    {/* Floating Browser Mockup */}
+                    <motion.div 
+                        initial={{ x: 20, y: 20 }}
+                        whileInView={{ x: 0, y: 0 }}
+                        transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                        className="absolute -bottom-4 -right-4 w-64 glass rounded-xl shadow-2xl overflow-hidden border-white/20"
+                    >
+                        <div className="p-2 border-b border-white/10 flex justify-center">
+                            <div className="px-3 py-0.5 rounded-full bg-white/5 text-[10px] text-white/40">vercel.app</div>
+                        </div>
+                        <div className="p-6 text-center space-y-2">
+                            <div className="text-lg font-bold">Welcome</div>
+                            <div className="text-[10px] text-white/40">Your site is live!</div>
+                            <div className="pt-4">
+                                <div className="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <motion.div 
+                                        initial={{ width: 0 }}
+                                        whileInView={{ width: "100%" }}
+                                        transition={{ duration: 2, delay: 0.5 }}
+                                        className="h-full bg-blue-500" 
+                                    />
                                 </div>
-                                <p className="flex items-center font-semibold text-xs text-white/75 ">vercel.com</p>
-                            </div>
-                            <div className="flex flex-col bg-white/5 text-white/50 items-center justify-center border-1 mx-2 my-1 select-none">
-                                <p className="text-2xl w-fit mt-5 ">Welcome to Shopify</p>
-                                <p className="text-xs w-fit text-center mt-2"> we sell not because we love you but because we love money</p>
-                                <div className="absolute top-25 rounded-full animate-bounce p-5 bg-yellow-500/20 -z-1"></div>
-                                <div className="relative top-5 p-10 bg-white/10 rotate-45"></div>
-                                <div className="relative -top-12 left-10 p-10 bg-white/10 rotate-45"></div>
-                                <div className="relative -top-31 right-10 p-10 bg-white/10 rotate-45"></div>
                             </div>
                         </div>
+                    </motion.div>
+                </div>
+            </motion.div>
 
-                    </div>
+            <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-100px" }}
+                variants={fadeUp}
+                className="group flex flex-col gap-8 p-8 md:p-12 glass rounded-3xl hover:border-white/20 transition-colors"
+            >
+                <div>
+                    <h2 className="text-sm font-medium text-purple-400 mb-4 uppercase tracking-wider">Collaborative Pre-production</h2>
+                    <p className="text-2xl md:text-3xl font-bold leading-tight">Every deploy is remarkable. Chat with your team on real UI, not just designs.</p>
                 </div>
 
-                <div className="flex flex-col md:w-1/2 gap-5 md:gap-12 p-5 md:p-12 border-1">
-                    <div>
-                        <h2 className="text-sm text-white/50">Collaborative Pre-production</h2>
-                        <p className="lg:text-2xl font-semibold mt-3 md:mt-5">Every deploy is remarkable. Chat with your team on real, production-grade UI, not just designs.</p>
-                    </div>
-                    <div className="flex flex-col gap-5 select-none">
-                        <div>
-                            <p className='w-fit border-1 rounded-t-xl rounded-r-xl p-3'>hellow susie</p>
-                        </div>
-                        <div className="flex justify-end min-w-full">
-                            <p className='w-fit border-1 rounded-l-xl rounded-t-xl bg-blue-700 p-3'>Oh hay Musa!</p>
-                        </div>
-                        <div className="flex justify-between">
-                            <p className="w-fit border-1 rounded-t-xl rounded-r-xl p-3">Well umm.. I...</p>
-                        </div>
-                        <div>
-                            <p className='border-1 rounded-t-xl rounded-r-xl p-3 w-fit'>Would you like to <br></br>watch a movie together?</p>
-                        </div>
-                        <div className="flex justify-end min-w-full">
-                            <p className='w-fit border-1 rounded-t-xl rounded-l-xl bg-blue-700 p-3'>Okey, which one?</p>
-                        </div>
-                    </div>
+                <div className="mt-auto space-y-4">
+                    {[
+                        { text: "Hello Musa!", side: "left", color: "bg-white/10" },
+                        { text: "Hey! Let's check the new UI.", side: "right", color: "bg-blue-600" },
+                        { text: "Looks amazing with these animations!", side: "left", color: "bg-white/10" }
+                    ].map((msg, i) => (
+                        <motion.div 
+                            key={i}
+                            initial={{ opacity: 0, scale: 0.9, x: msg.side === 'left' ? -20 : 20 }}
+                            whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                            transition={{ delay: 0.2 + i * 0.1 }}
+                            className={`flex ${msg.side === 'right' ? 'justify-end' : 'justify-start'}`}
+                        >
+                            <div className={`px-4 py-2 rounded-2xl text-sm ${msg.color} ${msg.side === 'left' ? 'rounded-tl-none' : 'rounded-tr-none'}`}>
+                                {msg.text}
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
-            </div>
-        </div>
+            </motion.div>
+        </section>
     )
 }
 
