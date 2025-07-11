@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import Footer from "./components/Footer"
 import Header from "./components/Header"
 import Home from "./components/Home"
+import BackgroundAnimation from "./components/BackgroundAnimation"
 
 function App() {
   const mouseX = useMotionValue(0)
@@ -24,6 +25,8 @@ function App() {
 
   return (
     <div className="relative min-h-screen bg-black text-white selection:bg-white selection:text-black overflow-hidden">
+      <BackgroundAnimation />
+      
       {/* Dynamic Spotlight */}
       <motion.div 
         className="pointer-events-none fixed inset-0 z-0 opacity-30"
@@ -31,9 +34,6 @@ function App() {
           background: `radial-gradient(600px circle at ${spotlightX}px ${spotlightY}px, rgba(29, 78, 216, 0.15), transparent 80%)`,
         }}
       />
-      
-      {/* Background Decor */}
-      <div className="fixed inset-0 grid-bg opacity-10 pointer-events-none" />
       
       <motion.div
         initial={{ opacity: 0 }}
@@ -48,6 +48,7 @@ function App() {
     </div>
   )
 }
+
 
 
 

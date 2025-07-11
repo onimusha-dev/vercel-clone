@@ -78,3 +78,19 @@
   background-size: 24px 24px;
 }
 
+.border-gradient {
+  position: relative;
+  border: 1px solid transparent;
+  background-clip: padding-box;
+}
+
+.border-gradient::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  background: linear-gradient(to bottom right, rgba(255,255,255,0.2), transparent, rgba(255,255,255,0.05));
+  border-radius: inherit;
+  pointer-events: none;
+}
+

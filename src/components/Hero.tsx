@@ -1,7 +1,26 @@
-import { motion } from "framer-motion"
+import { motion, useTransform, useMotionValue, useSpring } from "framer-motion"
+import { useEffect } from "react"
 import type { Variants } from "framer-motion"
 
 function Hero() {
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const springX = useSpring(mouseX, { damping: 50, stiffness: 400 })
+  const springY = useSpring(mouseY, { damping: 50, stiffness: 400 })
+
+  const moveX = useTransform(springX, [0, 2000], [-20, 20])
+  const moveY = useTransform(springY, [0, 1000], [-20, 20])
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      mouseX.set(e.clientX)
+      mouseY.set(e.clientY)
+    }
+    window.addEventListener("mousemove", handleMouseMove)
+    return () => window.removeEventListener("mousemove", handleMouseMove)
+  }, [mouseX, mouseY])
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -32,15 +51,40 @@ function Hero() {
       viewport={{ once: true }}
       className="relative flex flex-col items-center text-center py-12 md:py-24"
     >
-      {/* Background Abstract Glows */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-500/10 blur-[120px] -z-1" />
+      {/* Background Abstract Glows with Parallax */}
+      <motion.div 
+        style={{ x: moveX, y: moveY }}
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-blue-600/20 blur-[120px] -z-1 opacity-50" 
+      />
+      
+      <motion.div 
+        style={{ x: useTransform(springX, [0, 2000], [20, -20]), y: useTransform(springY, [0, 1000], [20, -20]) }}
+        animate={{ 
+          scale: [1, 1.1, 1],
+          opacity: [0.15, 0.3, 0.15]
+        }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-blue-400/20 blur-[120px] -z-1" 
+      />
+
+      <motion.div 
+        style={{ x: moveX, y: moveY }}
+        animate={{ 
+          scale: [1.1, 1, 1.1],
+          opacity: [0.1, 0.25, 0.1]
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -top-24 right-1/4 w-[600px] h-[600px] bg-purple-500/20 blur-[130px] -z-1" 
+      />
+
       <motion.div 
         animate={{ 
           scale: [1, 1.2, 1],
-          opacity: [0.1, 0.2, 0.1]
+          opacity: [0.05, 0.15, 0.05],
+          rotate: [0, 180, 360]
         }}
-        transition={{ duration: 10, repeat: Infinity }}
-        className="absolute -top-48 right-0 w-[500px] h-[500px] bg-purple-500/10 blur-[120px] -z-1" 
+        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-indigo-500/10 blur-[140px] -z-1" 
       />
 
       <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-white/50 mb-8">
